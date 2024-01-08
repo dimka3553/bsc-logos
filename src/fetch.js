@@ -55,11 +55,13 @@ async function main() {
 main();
 
 (async () => {
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({
+    headless:false
+  });
 
   let tokens = [];
   let currentPage = 1;
-  let totalPages = 13;
+  let totalPages = 15;
 
   while (totalPages === 0 || currentPage <= totalPages) {
     const page = await browser.newPage();
@@ -78,10 +80,9 @@ main();
       const rows = Array.from(document.querySelectorAll("table>tbody>tr"));
 
       return rows.map((row) => {
-        const imgElement = row.querySelector(".media>img");
-        const linkElement = row.querySelector(".media>.media-body>h3>a");
-        const descriptionElement = row.querySelector(".media>.media-body>p");
-        const typeElement = row.querySelector(".media>.media-body>span");
+        console.log(row)
+        const imgElement = row.querySelector("a > img");
+        const linkElement = row.querySelector("a");
 
         const logoURI = imgElement ? imgElement.src : null;
         const name = linkElement ? linkElement.textContent : null;

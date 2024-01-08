@@ -5,9 +5,9 @@ import url from "url";
 import sharp from "sharp";
 import fs from "fs";
 import fetch from "node-fetch";
+import pcsJson from "./data/pcs.json" assert { type: "json" };
 import cmcJson from "./data/cmc.json" assert { type: "json" };
 import cgJson from "./data/cg.json" assert { type: "json" };
-import pcsJson from "./data/pcs.json" assert { type: "json" };
 import bscscanJson from "./data/bscscan.json" assert { type: "json" };
 
 const tokens = [...cmcJson, ...cgJson, ...pcsJson, ...bscscanJson];
